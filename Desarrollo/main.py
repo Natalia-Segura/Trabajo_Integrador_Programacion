@@ -46,3 +46,5 @@ def agregar_pais():
         #El archivo csv se cierra
     else:
         print("\tERROR. El pais ya se encuentra en el archivo .csv") #Si encuentra una concidencia, no abre el archivo y se notifica que el pais existe
+#Funcion 2
+#Funcion 3
