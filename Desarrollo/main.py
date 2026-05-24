@@ -2,7 +2,12 @@ import csv #Importamos libreria para trabajar en archivos csv
 #Funcion para agregar paises al .csv
 def agregar_pais():
     condi_1=False #Condicion para no agregar un pais que existe en la lista de paises
-    nuevo_pais=input("Ingrese el nombre del nuevo pais: ").capitalize() #Nuevo pais que el usuario desea ingresar
+    while True:
+        nuevo_pais=input("Ingrese el nombre del nuevo pais: ").capitalize() #Nuevo pais que el usuario desea ingresar
+        if nuevo_pais.isalpha() == True:
+            break
+        else:
+            print("\tERROR. Ingrese una cadena de texto")
     with open("Trabajo_Integrador_Programacion/desarrollo/paises.csv", "r", newline="", encoding="UTF-8") as paises: #Abrimos el archivo csv en modo "r" que es lectura
         lectura_diccionario=csv.DictReader(paises) #El archivo csv se mapea directamente en un diccionario
         for linea in lectura_diccionario: #Recorremos el diccionario con el bucle
@@ -48,3 +53,4 @@ def agregar_pais():
         print("\tERROR. El pais ya se encuentra en el archivo .csv") #Si encuentra una concidencia, no abre el archivo y se notifica que el pais existe
 #Funcion 2
 #Funcion 3
+agregar_pais()
