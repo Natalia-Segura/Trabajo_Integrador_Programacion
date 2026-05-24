@@ -52,5 +52,16 @@ def agregar_pais():
     else:
         print("\tERROR. El pais ya se encuentra en el archivo .csv") #Si encuentra una concidencia, no abre el archivo y se notifica que el pais existe
 #Funcion 2
+def actualizar_datos():
+    pass
 #Funcion 3
+def busqueda_pais():
+    pass
+#Funcion 4
+
+#Funcion 5
+
+#Funcion 6
+
+#Cuerpo principal del programa
 agregar_pais()
