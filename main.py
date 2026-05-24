@@ -64,4 +64,3 @@ def busqueda_pais():
 #Funcion 6
 
 #Cuerpo principal del programa
-agregar_pais()
