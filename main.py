@@ -8,14 +8,14 @@ def agregar_pais():
             break
         else:
             print("\tERROR. Ingrese una cadena de texto")
-    with open("Trabajo_Integrador_Programacion/paises.csv", "r", newline="", encoding="UTF-8") as paises: #Abrimos el archivo csv en modo "r" que es lectura
+    with open("paises.csv", "r", newline="", encoding="UTF-8") as paises: #Abrimos el archivo csv en modo "r" que es lectura
         lectura_diccionario=csv.DictReader(paises) #El archivo csv se mapea directamente en un diccionario
         for linea in lectura_diccionario: #Recorremos el diccionario con el bucle
             if linea['nombre'] == nuevo_pais: #Si el valor de la clave que recorre el diccionario es igual al pais que ingreso el usuario se cambia la condicion
                 condi_1 = True #La condicion se hace verdadera si se llega a encontrar un pais repetido
     #El archivo csv se cierra
     if condi_1 == False: #En caso que no encontro niuna concidencia en el diccionario
-        with open("Trabajo_Integrador_Programacion/desarrollo/paises.csv", "a", newline="", encoding="UTF-8") as paises: #Abrimos el archivo csv en modo "a" que permite agregar elementos al final del archivo
+        with open("paises.csv", "a", newline="", encoding="UTF-8") as paises: #Abrimos el archivo csv en modo "a" que permite agregar elementos al final del archivo
             lectura_lista=csv.writer(paises) #Preparamos el archivo para escribir en el
             while True: #Bucle para agregar la cantidad de poblacion, debe ser un numero entero
                 poblacion=input(f"Ingrese la cantidad de poblacion de {nuevo_pais}: ")
