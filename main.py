@@ -119,7 +119,28 @@ def actualizar_datos():
 
 #Funcion 3
 def busqueda_pais():
-    pass
+    lista=[]
+    condi_1=False
+    pais=input("Que pais desea buscar?: ").capitalize()
+    if pais.isalpha() == True:
+        with open("paises.csv","r",newline="",encoding="UTF-8") as paises:
+            lista_pais=csv.DictReader(paises)
+            for nombres in lista_pais:
+                lista.append(nombres)
+            for busqueda in lista:
+                if pais == busqueda['nombre']:
+                    print(f"El pais {pais} se encuentra en la lista")
+                    condi_1=True
+                    break
+                elif pais in busqueda['nombre']:
+                    print(f"El pais {busqueda['nombre']} se cuentra en la lista")
+                    condi_1=True
+                    break
+        if condi_1 == False:
+            print("El pais no se encuentra en la lista")
+    else:
+        print("\tERROR. Ingrese una cadena de texto")
+
 #Funcion 4
 
 #Funcion 5
@@ -127,5 +148,4 @@ def busqueda_pais():
 #Funcion 6
 
 #Cuerpo principal del programa
-actualizar_datos()
 
