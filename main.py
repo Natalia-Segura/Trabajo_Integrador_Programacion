@@ -1,4 +1,3 @@
-trabajo_pablo
 import csv #Importamos libreria para trabajar en archivos csv
 #Funcion para agregar paises al .csv
 def agregar_pais():
@@ -54,7 +53,63 @@ def agregar_pais():
         print("\tERROR. El pais ya se encuentra en el archivo .csv") #Si encuentra una concidencia, no abre el archivo y se notifica que el pais existe
 #Funcion 2
 def actualizar_datos():
-    pass
+    condi_2=False
+    while True:
+            pais=input("A que pais desea actualizar sus datos? ").capitalize()
+            if pais.isalpha() == True:
+                break
+            else:
+                print("\tERROR. Ingrese una cadena de texto")
+    with open("Trabajo_Integrador_Programacion/paises.csv","r",newline="",encoding="UTF-8") as lista:
+        paises_diccionario=csv.DictReader(lista)
+        for buscar in paises_diccionario:
+            if buscar['nombre'] == pais:
+                condi_2=True
+    if condi_2 == True:
+        with open("Trabajo_Integrador_Programacion/paises.csv","w",newline="",encoding="UTF-8") as paises:
+            buscar_diccionario=csv.DictWriter(paises)
+            for clave in buscar_diccionario:
+                if clave['nombre'] == pais:
+                    while True:
+                        poblacion=input(f"La cantidad de poblacion de {pais} es {clave['poblacion']}, desea actualizar?: ('S' Agregar | 'N' No agregar)\t>>>:  ").upper()
+                        match poblacion:
+                            case "S":
+                                nueva_poblacion=input("Ingrese el nuevo valor de la pobalcion: ")
+                                try:
+                                    nueva_poblacion = int(nueva_poblacion)
+                                    clave['poblacion'] = nueva_poblacion
+                                    print(f"Poblacion de {pais} actualizada")
+                                    break
+                                except ValueError:
+                                    print("\tERROR. Ingrese un numero entero")
+                                except Exception as error:
+                                    print("\tERROR. Se detecto un error ",type(error).__name__)
+                            case "N":
+                                break
+                            case _:
+                                print("\tERROR. Ingrese S o N")
+                    while True:
+                        superficie=input(f"La cantidad de superficie de {pais} es {clave['superficie']}, desea actualizar?: ('S' Agregar | 'N' No agregar)\t>>>:  ").upper()
+                        match superficie:
+                            case "S":
+                                nueva_superficie=input("Ingrese el nuevo valor de la pobalcion: ")
+                                try:
+                                    nueva_superficie = float(nueva_superficie)
+                                    clave['superficie'] = nueva_superficie
+                                    print(f"Superficie de {pais} actualizada")
+                                    break
+                                except ValueError:
+                                    print("\tERROR. Ingrese un numero flotante")
+                                except Exception as error:
+                                    print("\tERROR. Se detecto un error ",type(error).__name__)
+                            case "N":
+                                break
+                            case _:
+                                print("\tERROR. Ingrese S o N")
+    else:
+        print(f"\tERROR. {pais} no se encuentra")
+
+
 #Funcion 3
 def busqueda_pais():
     pass
@@ -65,4 +120,5 @@ def busqueda_pais():
 #Funcion 6
 
 #Cuerpo principal del programa
+actualizar_datos()
 
