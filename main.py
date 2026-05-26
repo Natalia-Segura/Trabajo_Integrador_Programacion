@@ -8,7 +8,7 @@ def agregar_pais():
             break
         else:
             print("\tERROR. Ingrese una cadena de texto")
-    with open("Trabajo_Integrador_Programacion/desarrollo/paises.csv", "r", newline="", encoding="UTF-8") as paises: #Abrimos el archivo csv en modo "r" que es lectura
+    with open("Trabajo_Integrador_Programacion/paises.csv", "r", newline="", encoding="UTF-8") as paises: #Abrimos el archivo csv en modo "r" que es lectura
         lectura_diccionario=csv.DictReader(paises) #El archivo csv se mapea directamente en un diccionario
         for linea in lectura_diccionario: #Recorremos el diccionario con el bucle
             if linea['nombre'] == nuevo_pais: #Si el valor de la clave que recorre el diccionario es igual al pais que ingreso el usuario se cambia la condicion
@@ -54,21 +54,26 @@ def agregar_pais():
 #Funcion 2
 def actualizar_datos():
     condi_2=False
+    lista_paises=[]
+    encabezado=["nombre","poblacion","superficie","continente"]
     while True:
             pais=input("A que pais desea actualizar sus datos? ").capitalize()
             if pais.isalpha() == True:
                 break
             else:
                 print("\tERROR. Ingrese una cadena de texto")
-    with open("Trabajo_Integrador_Programacion/paises.csv","r",newline="",encoding="UTF-8") as lista:
+    with open("paises.csv","r",newline="",encoding="UTF-8") as lista:
         paises_diccionario=csv.DictReader(lista)
-        for buscar in paises_diccionario:
+        for list_pais in paises_diccionario:
+            lista_paises.append(list_pais)
+        for buscar in lista_paises:
             if buscar['nombre'] == pais:
                 condi_2=True
+                break
     if condi_2 == True:
-        with open("Trabajo_Integrador_Programacion/paises.csv","w",newline="",encoding="UTF-8") as paises:
-            buscar_diccionario=csv.DictWriter(paises)
-            for clave in buscar_diccionario:
+        with open("paises.csv","w",newline="",encoding="UTF-8") as paises:
+            diccionario_pais=csv.DictWriter(paises, fieldnames=encabezado)
+            for clave in lista_paises:
                 if clave['nombre'] == pais:
                     while True:
                         poblacion=input(f"La cantidad de poblacion de {pais} es {clave['poblacion']}, desea actualizar?: ('S' Agregar | 'N' No agregar)\t>>>:  ").upper()
@@ -106,6 +111,8 @@ def actualizar_datos():
                                 break
                             case _:
                                 print("\tERROR. Ingrese S o N")
+            diccionario_pais.writeheader()
+            diccionario_pais.writerows(lista_paises)
     else:
         print(f"\tERROR. {pais} no se encuentra")
 
