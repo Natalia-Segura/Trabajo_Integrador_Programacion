@@ -1,3 +1,4 @@
+import csv #Importamos libreria para trabajar en archivos csv
 while True:
     opcion = input("""
     1. Agregar país
@@ -13,7 +14,7 @@ while True:
 
         case "1":
 
-            import csv #Importamos libreria para trabajar en archivos csv
+
             #Funcion para agregar paises al .csv
             def agregar_pais():
                 condi_1=False #Condicion para no agregar un pais que existe en la lista de paises
