@@ -1,7 +1,7 @@
 import csv #Importamos libreria para trabajar en archivos csv
 
 #Funcion para agregar paises al .csv
-def agregar_pais():
+def agregar_pais(): #Opcion 1
     condi_1=False #Condicion para no agregar un pais que existe en la lista de paises
     while True:
         nuevo_pais=input("Ingrese el nombre del nuevo pais: ").capitalize() #Nuevo pais que el usuario desea ingresar
@@ -55,7 +55,7 @@ def agregar_pais():
 
 
             #Funcion para actualizar poblacion y superficie
-def actualizar_datos():
+def actualizar_datos(): #Opcion 2
     condi_2=False #Variable booleana para encontrar pais
     lista_paises=[] #Lista vacia para guardar diccionarios del archivo csv
     encabezado=["nombre","poblacion","superficie","continente"] #Encabezado para la actualizacion del archivo csv
@@ -120,7 +120,7 @@ def actualizar_datos():
         print(f"\tERROR. {pais} no se encuentra") #Si no se encuentra el pais que se escribio
 
             #Funcion para buscar un pais o su coincidencia
-def busqueda_pais():
+def busqueda_pais(): #Opcion 3
     lista=[] #Lista vacia para guardar los datos del csv
     condi_1=False #Variable booleana para ver si se encontro el pais o su coincidencia
     pais=input("Que pais desea buscar?: ").capitalize()
@@ -143,7 +143,7 @@ def busqueda_pais():
     else: #Si no se ingresa una cadena de texto
         print("\tERROR. Ingrese una cadena de texto")
             #Filtrar países por: Continente, Rango de población,Rango de superficie
-def filtrar_paises():
+def filtrar_paises(): #Opcion 4
 #Creo variable del menu para no repetir
     menu = """
     Elija una opción:
@@ -217,7 +217,7 @@ def filtrar_paises():
             print("No se encontraron coincidencias")
 
             # Ordenar países por: Nombre, Población, Superficie (ascendente o descendente)
-def ordenar_paises():
+def ordenar_paises(): #Opcion 5
 
 #Creo lista vacía para guardar los países
     lista_paises = []
@@ -304,7 +304,7 @@ def ordenar_paises():
     for pais in lista_paises:
         print(pais)
             #Mostrar estadísticas: País con mayor y menor población, Promedio de población, Promedio de superficie, Cantidad de países por continente
-def mostrar_estadisticas():
+def mostrar_estadisticas(): #Opcion 6
 #Abro el archivo CSV en modo lectura
     with open("paises.csv", "r", newline="", encoding="utf-8") as archivo:
         lineas = archivo.readlines()
