@@ -131,15 +131,15 @@ def busqueda_pais(): #Opcion 3
                 lista.append(nombres)
             for busqueda in lista: #Recorrido para buscar el pais
                 if pais == busqueda['nombre']: #Si coincide el nombre entero
-                    print(f"El pais {pais} se encuentra en la lista")
+                    print(f"\tEl pais {pais} SI se encuentra en la lista!!!")
                     condi_1=True #Bandera para indicar que se encontro pais por nombre completo
                     break #Salimos del for
                 elif pais in busqueda['nombre']: #Se busca la coincidencia
-                    print(f"El pais {busqueda['nombre']} se cuentra en la lista")
+                    print(f"\tEl pais {busqueda['nombre']} SI se cuentra en la lista!!!")
                     condi_1=True #Bandera para indicar que la coincidencia se encontro
                     break #Salimos del for
         if condi_1 == False: #Si no se encontro por nombre completo ni por coincidencia
-            print("El pais no se encuentra en la lista")
+            print("El pais NO se encuentra en la lista")
     else: #Si no se ingresa una cadena de texto
         print("\tERROR. Ingrese una cadena de texto")
             #Filtrar países por: Continente, Rango de población,Rango de superficie
@@ -374,19 +374,25 @@ while True:
     6. Estadísticas
     0. Salir
     """)
-    match opcion:
-        case 0:
-            print("Usted salio del programa")
-            break
-        case 1:
-            agregar_pais()
-        case 2:
-            actualizar_datos()
-        case 3:
-            busqueda_pais()
-        case 4:
-            filtrar_paises()
-        case 5:
-            ordenar_paises()
-        case 6:
-            mostrar_estadisticas()
+    try:
+        opcion = int(opcion)
+        match opcion:
+            case 0:
+                print("Usted salio del programa")
+                break
+            case 1:
+                agregar_pais()
+            case 2:
+                actualizar_datos()
+            case 3:
+                busqueda_pais()
+            case 4:
+                filtrar_paises()
+            case 5:
+                ordenar_paises()
+            case 6:
+                mostrar_estadisticas()
+            case _:
+                print("Numero fuera de rango")
+    except ValueError:
+        print("Ingrese un numero entero")
