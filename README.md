@@ -22,7 +22,7 @@
 ##### Superficie (ascendente o descendente)
 ### 6- Mostrar estadísticas:
 ##### País con mayor y menor población
-##### Promedio de población 2
+##### Promedio de población
 ##### Promedio de superficie
 ##### Cantidad de países por continente
 
