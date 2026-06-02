@@ -1,5 +1,7 @@
 import csv #Importamos libreria para trabajar en archivos csv
 while True:
+    print()
+    print("\t\t=====-----MENU-----=====")
     opcion = input("""
     1. Agregar país
     2. Actualizar país
@@ -352,7 +354,7 @@ while True:
 
             def mostrar_estadisticas():
             #Abro el archivo CSV en modo lectura
-                with open("paises.csv", "r", encoding="utf-8") as archivo:
+                with open("paises.csv", "r", newline="", encoding="utf-8") as archivo:
                     lineas = archivo.readlines()
 
                 paises = []
@@ -412,6 +414,7 @@ while True:
 
 
         case "0":
+            print("Usted salio del programa")
             break
 
         case _:
