@@ -46,3 +46,6 @@
 ##### Pablo, realizo las primeras tres funciones (agregar_pais(), actualizar_pais(), busqueda_pais())
 ##### Natalia, realizo las funciones filtrar_pais(), ordenar_pais() y mostrar estadisticas
 ##### Durante la creacion del programa nos realizamos consultas uno al otro, consultado partes del codigo para estar de acuerdo
+
+### Link del video explicativo
+##### (link)
