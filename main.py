@@ -211,7 +211,7 @@ def filtrar_paises(): #Opcion 4
 
             elif opcion_filtrar == "3":
 #Paso el número de superficie de string a número entero                
-                superficie = int(datos[2])
+                superficie = float(datos[2])
 #Busco los paises dentro del rango de superficie ingresado                
                 if minimo <= superficie <= maximo:
                     print(datos[0])
@@ -300,7 +300,7 @@ def ordenar_paises(): #Opcion 5
     elif opcion_orden == "3":
 #Ordenar por superficie
         lista_paises.sort(
-            key=lambda pais: int(pais[2]),
+            key=lambda pais: float(pais[2]),
             reverse=reverse
         )
 
@@ -309,6 +309,7 @@ def ordenar_paises(): #Opcion 5
         print(pais)
 
 def mostrar_estadisticas(): #Opcion 6
+    #Mostrar estadísticas: País con mayor y menor población, Promedio de población, Promedio de superficie, Cantidad de países por continente
 #Abro el archivo CSV en modo lectura
     with open("paises.csv", "r", newline="", encoding="utf-8") as archivo:
         lineas = archivo.readlines()
@@ -344,12 +345,12 @@ def mostrar_estadisticas(): #Opcion 6
 #Calculo el total de población para luego calcular el promedio
     total = sum(p["poblacion"] for p in paises)
     prom_pob = total / len(paises)
-    print("\nPROMEDIO POBLACIÓN:", prom_pob)
+    print(f"\nPROMEDIO POBLACIÓN: {prom_pob:.2f}")
 
 #Calculo el total de superficie para luego calcular el promedio
     total_sup = sum(p["superficie"] for p in paises)
-    prom_sup = total_sup / len(paises)
-    print("PROMEDIO SUPERFICIE:", prom_sup)
+    prom_sup = (total_sup / len(paises))
+    print(f"PROMEDIO SUPERFICIE: {prom_sup:.2f} ")
 
 #Diccionario para contar países por continente
     conteo = {}
@@ -365,7 +366,7 @@ def mostrar_estadisticas(): #Opcion 6
 #Recorro el diccionario para mostrar la cantidad de países por continente
     for cont, cant in conteo.items():
         print(cont, ":", cant)
-#Mostrar estadísticas: País con mayor y menor población, Promedio de población, Promedio de superficie, Cantidad de países por continente
+
 while True:
     print()
     print("\t\t=====-----MENU-----=====")
