@@ -2,6 +2,7 @@ import csv #Importamos libreria para trabajar en archivos csv
 
 #Funcion para agregar paises al .csv
 def agregar_pais(): #Opcion 1
+    #Funcion para agregar paises al .csv
     condi_1=False #Condicion para no agregar un pais que existe en la lista de paises
     while True:
         nuevo_pais=input("Ingrese el nombre del nuevo pais: ").capitalize() #Nuevo pais que el usuario desea ingresar
@@ -53,9 +54,8 @@ def agregar_pais(): #Opcion 1
     else:
         print("\tERROR. El pais ya se encuentra en el archivo .csv") #Si encuentra una concidencia, no abre el archivo y se notifica que el pais existe
 
-
-            #Funcion para actualizar poblacion y superficie
 def actualizar_datos(): #Opcion 2
+    #Funcion para actualizar poblacion y superficie
     condi_2=False #Variable booleana para encontrar pais
     lista_paises=[] #Lista vacia para guardar diccionarios del archivo csv
     encabezado=["nombre","poblacion","superficie","continente"] #Encabezado para la actualizacion del archivo csv
@@ -82,12 +82,14 @@ def actualizar_datos(): #Opcion 2
                         poblacion=input(f"La cantidad de poblacion de {pais} es {clave['poblacion']}, desea actualizar?: ('S' Agregar | 'N' No agregar)\t>>>:  ").upper() #Se muestra la cantidad de poblacion del pais, y se le pregunta si quiere editar
                         match poblacion: #Mini menu para editar o no
                             case "S": #En caso de querer editar
-                                nueva_poblacion=input("Ingrese el nuevo valor de la pobalcion: ") 
                                 try:
-                                    nueva_poblacion = int(nueva_poblacion) #Intentamos convertir en entero el numero que ingreso el usuario
-                                    clave['poblacion'] = nueva_poblacion #Si es un entero, se actualiza el valor
-                                    print(f"Poblacion de {pais} actualizada") #Se muestra mensaje de que se actualizo
-                                    break #Salimos del buble para la modificacion de poblacion
+                                    nueva_poblacion=int(input("Ingrese el nuevo valor de la poblacion: ")) 
+                                    if nueva_poblacion > 0:
+                                        clave['poblacion'] = nueva_poblacion #Si es un entero, se actualiza el valor
+                                        print(f"Poblacion de {pais} actualizada") #Se muestra mensaje de que se actualizo
+                                        break #Salimos del buble para la modificacion de poblacion
+                                    else:
+                                        print("\tIngrese un numero mayor a 0")
                                 except ValueError: #Si el usuario ingresa un flotante, una cadena de texto o no agrega nada 
                                     print("\tERROR. Ingrese un numero entero")
                                 except Exception as error: #Si se tiene otro tipo de exepcion
@@ -100,12 +102,14 @@ def actualizar_datos(): #Opcion 2
                         superficie=input(f"La cantidad de superficie de {pais} es {clave['superficie']}, desea actualizar?: ('S' Agregar | 'N' No agregar)\t>>>:  ").upper() #Se muestra la cantidad de superficie, y se pregunta si quiere editar
                         match superficie: #Mini menu
                             case "S": #Si se quiere cambiar la superficie
-                                nueva_superficie=input("Ingrese el nuevo valor de la superficie: ")
                                 try:
-                                    nueva_superficie = float(nueva_superficie) #Intetamos pasar a flotante
-                                    clave['superficie'] = nueva_superficie #Si es un flotante actualizamos 
-                                    print(f"Superficie de {pais} actualizada") #Se muestra mensaje que el cambio fue exitoso
-                                    break #Salimos del bucle
+                                    nueva_superficie=float(input("Ingrese el nuevo valor de la superficie: "))
+                                    if nueva_superficie > 0:
+                                        clave['superficie'] = nueva_superficie #Si es un flotante actualizamos 
+                                        print(f"Superficie de {pais} actualizada") #Se muestra mensaje que el cambio fue exitoso
+                                        break #Salimos del bucle
+                                    else:
+                                        print("\tIngrese un numero mayor que 0")
                                 except ValueError: #Si se ingresa cualquier caracter que no sea un flotante
                                     print("\tERROR. Ingrese un numero flotante")
                                 except Exception as error: #Si se encuentra otra exepcion se guarda
@@ -119,8 +123,8 @@ def actualizar_datos(): #Opcion 2
     else:
         print(f"\tERROR. {pais} no se encuentra") #Si no se encuentra el pais que se escribio
 
-            #Funcion para buscar un pais o su coincidencia
 def busqueda_pais(): #Opcion 3
+    #Funcion para buscar un pais o su coincidencia
     lista=[] #Lista vacia para guardar los datos del csv
     condi_1=False #Variable booleana para ver si se encontro el pais o su coincidencia
     pais=input("Que pais desea buscar?: ").capitalize()
@@ -143,6 +147,7 @@ def busqueda_pais(): #Opcion 3
     else: #Si no se ingresa una cadena de texto
         print("\tERROR. Ingrese una cadena de texto")
             #Filtrar países por: Continente, Rango de población,Rango de superficie
+
 def filtrar_paises(): #Opcion 4
 #Creo variable del menu para no repetir
     menu = """
@@ -216,9 +221,8 @@ def filtrar_paises(): #Opcion 4
         if not encontrado:
             print("No se encontraron coincidencias")
 
-            # Ordenar países por: Nombre, Población, Superficie (ascendente o descendente)
 def ordenar_paises(): #Opcion 5
-
+# Ordenar países por: Nombre, Población, Superficie (ascendente o descendente)
 #Creo lista vacía para guardar los países
     lista_paises = []
 
@@ -303,7 +307,7 @@ def ordenar_paises(): #Opcion 5
 #Muestro los países ordenados
     for pais in lista_paises:
         print(pais)
-            #Mostrar estadísticas: País con mayor y menor población, Promedio de población, Promedio de superficie, Cantidad de países por continente
+
 def mostrar_estadisticas(): #Opcion 6
 #Abro el archivo CSV en modo lectura
     with open("paises.csv", "r", newline="", encoding="utf-8") as archivo:
@@ -361,7 +365,7 @@ def mostrar_estadisticas(): #Opcion 6
 #Recorro el diccionario para mostrar la cantidad de países por continente
     for cont, cant in conteo.items():
         print(cont, ":", cant)
-
+#Mostrar estadísticas: País con mayor y menor población, Promedio de población, Promedio de superficie, Cantidad de países por continente
 while True:
     print()
     print("\t\t=====-----MENU-----=====")
