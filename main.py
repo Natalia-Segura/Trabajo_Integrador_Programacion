@@ -271,7 +271,7 @@ def filtrar_paises(): #Opcion 4
 
             elif opcion_filtrar == "3":
 #Paso el número de superficie de string a número entero                
-                superficie = int(datos[2])
+                superficie = float(datos[2])
 #Busco los paises dentro del rango de superficie ingresado                
                 if minimo <= superficie <= maximo:
                     print(datos[0])
@@ -361,7 +361,7 @@ def ordenar_paises(): #Opcion 5
     elif opcion_orden == "3":
 #Ordenar por superficie
         lista_paises.sort(
-            key=lambda pais: int(pais[2]),
+            key=lambda pais: float(pais[2]),
             reverse=reverse
         )
 
@@ -405,12 +405,12 @@ def mostrar_estadisticas(): #Opcion 6
 #Calculo el total de población para luego calcular el promedio
     total = sum(p["poblacion"] for p in paises)
     prom_pob = total / len(paises)
-    print("\nPROMEDIO POBLACIÓN:", prom_pob)
+    print(f"\nPROMEDIO POBLACIÓN: {prom_pob:2}")
 
 #Calculo el total de superficie para luego calcular el promedio
     total_sup = sum(p["superficie"] for p in paises)
     prom_sup = total_sup / len(paises)
-    print("PROMEDIO SUPERFICIE:", prom_sup)
+    print(f"PROMEDIO SUPERFICIE: {total_sup:.2f}")
 
 #Diccionario para contar países por continente
     conteo = {}
