@@ -195,7 +195,7 @@ def busqueda_pais(): #Opcion 3
                     break 
                 
                 elif pais in busqueda['nombre']: 
-                    print(f"El pais {busqueda['nombre']} se cuentra en la lista")
+                    print(f"El pais {busqueda['nombre']} se cuentra en la lista, el cual tiene una poblacion de {busqueda['poblacion']} y cuenta con una superficie de {busqueda['superficie']} km cuadrados")
                     condi_1=True 
                     break 
         
