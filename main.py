@@ -400,4 +400,4 @@ while True:
             case _:
                 print("Numero fuera de rango")
     except ValueError:
-        print("Ingrese un numero entero")
+        print("\tIngrese un numero entero")
