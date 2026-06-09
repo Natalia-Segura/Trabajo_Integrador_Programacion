@@ -403,7 +403,7 @@ def mostrar_estadisticas(): #Opcion 6
 #Calculo el total de población para luego calcular el promedio
     total = sum(p["poblacion"] for p in paises)
     prom_pob = total / len(paises)
-    print(f"\nPROMEDIO POBLACIÓN: {prom_pob:2}")
+    print(f"\nPROMEDIO POBLACIÓN: {prom_pob:.2f}")
 
 #Calculo el total de superficie para luego calcular el promedio
     total_sup = sum(p["superficie"] for p in paises)
@@ -437,20 +437,25 @@ while True:
     6. Estadísticas
     0. Salir
     """)
-    match opcion:
-
-        case "0":
-            print("Usted salio del programa")
-            break
-        case "1":
-            agregar_pais()
-        case "2":
-            actualizar_datos()
-        case "3":
-            busqueda_pais()
-        case "4":
-            filtrar_paises()
-        case "5":
-            ordenar_paises()
-        case "6":
-            mostrar_estadisticas()
+    try:
+        opcion = int(opcion)
+        match opcion:
+            case 0:
+                print("Usted salio del programa")
+                break
+            case 1:
+                agregar_pais()
+            case 2:
+                actualizar_datos()
+            case 3:
+                busqueda_pais()
+            case 4:
+                filtrar_paises()
+            case 5:
+                ordenar_paises()
+            case 6:
+                mostrar_estadisticas()
+            case _:
+                print("Numero fuera de rango")
+    except ValueError:
+        print("\tIngrese un numero entero")
