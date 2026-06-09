@@ -74,7 +74,6 @@ def agregar_pais(): #Opcion 1
     else:
         print("\tERROR. El pais ya se encuentra en el archivo .csv") 
 
-
 #Funcion para actualizar poblacion y superficie
 def actualizar_datos(): #Opcion 2
     condi_2=False
@@ -170,7 +169,6 @@ def actualizar_datos(): #Opcion 2
     else:
         print(f"\tERROR. {pais} no se encuentra") #Si no se encuentra el pais que se escribio
 
-
 #Funcion para buscar un pais o su coincidencia
 def busqueda_pais(): #Opcion 3
     lista=[] 
@@ -205,8 +203,7 @@ def busqueda_pais(): #Opcion 3
     
     else: 
         print("\tERROR. Ingrese una cadena de texto")
-            
-            
+
 #Filtrar países por: Continente, Rango de población,Rango de superficie
 def filtrar_paises(): #Opcion 4
 #Creo variable del menu para no repetir
@@ -281,7 +278,7 @@ def filtrar_paises(): #Opcion 4
         if not encontrado:
             print("No se encontraron coincidencias")
 
-            # Ordenar países por: Nombre, Población, Superficie (ascendente o descendente)
+# Ordenar países por: Nombre, Población, Superficie (ascendente o descendente)
 def ordenar_paises(): #Opcion 5
 
 #Creo lista vacía para guardar los países
@@ -368,7 +365,8 @@ def ordenar_paises(): #Opcion 5
 #Muestro los países ordenados
     for pais in lista_paises:
         print(pais)
-            #Mostrar estadísticas: País con mayor y menor población, Promedio de población, Promedio de superficie, Cantidad de países por continente
+
+#Mostrar estadísticas: País con mayor y menor población, Promedio de población, Promedio de superficie, Cantidad de países por continente
 def mostrar_estadisticas(): #Opcion 6
 #Abro el archivo CSV en modo lectura
     with open("paises.csv", "r", newline="", encoding="utf-8") as archivo:
@@ -426,8 +424,6 @@ def mostrar_estadisticas(): #Opcion 6
 #Recorro el diccionario para mostrar la cantidad de países por continente
     for cont, cant in conteo.items():
         print(cont, ":", cant)
-
-
 
 while True:
     print()

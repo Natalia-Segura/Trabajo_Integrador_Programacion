@@ -48,4 +48,4 @@
 ##### Durante la creacion del programa nos realizamos consultas uno al otro, consultado partes del codigo para estar de acuerdo
 
 ### Link del video explicativo
-##### (Link)
+##### (link)
