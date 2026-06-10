@@ -3,7 +3,7 @@ import csv
 
 #Funcion para agregar paises al .csv
 def agregar_pais(): #Opcion 1
-    condi_1=False
+    condi_1=False #Condicion para verificar que no se repita pais
     
     while True:
         nuevo_pais=input("Ingrese el nombre del nuevo pais: ").capitalize()
@@ -14,23 +14,21 @@ def agregar_pais(): #Opcion 1
     
     # Verifica que el país no exista previamente en el archivo
     with open("paises.csv", "r", newline="", encoding="UTF-8") as paises: 
-        lectura_diccionario=csv.DictReader(paises) 
+        lectura_diccionario=csv.DictReader(paises) #Lee el csv y guarda las filas en un diccionario, crea un iterador
         
         for linea in lectura_diccionario: 
             if linea['nombre'] == nuevo_pais: 
                 condi_1 = True 
-    
+    #Cerramos el csv
     if condi_1 == False:
         
         # Solicita y valida la población
         with open("paises.csv", "a", newline="", encoding="UTF-8") as paises: 
-            lectura_lista=csv.writer(paises) 
-            
+            lectura_lista=csv.writer(paises) #Se crea un objecto escritor y se guarda en la variable
+            #Solicita y calida la poblacion
             while True:
-                poblacion=input(f"Ingrese la cantidad de poblacion de {nuevo_pais}: ")
-                
                 try:
-                    poblacion = int(poblacion)
+                    poblacion = int(input(f"Ingrese la cantidad de poblacion de {nuevo_pais}: "))
                     if poblacion > 0:
                         break
                     else:
@@ -44,10 +42,8 @@ def agregar_pais(): #Opcion 1
             
             # Solicita y valida la superficie 
             while True: 
-                superficie=input("Ingrese la superficie (en km cuadrados): ")
-                
                 try: 
-                    superficie = float(superficie)
+                    superficie = float(input("Ingrese la superficie: "))
                     if superficie > 0: 
                         break
                     else:
@@ -69,7 +65,7 @@ def agregar_pais(): #Opcion 1
                     print("\tERROR. Ingrese una cadena de texto")
             
             # Agrega el nuevo registro al archivo 
-            lectura_lista.writerow([nuevo_pais,poblacion,superficie,continente])
+            lectura_lista.writerow([nuevo_pais,poblacion,superficie,continente]) #Escribimos una nueva fila al final del csv
         
     else:
         print("\tERROR. El pais ya se encuentra en el archivo .csv") 
@@ -91,9 +87,9 @@ def actualizar_datos(): #Opcion 2
     
     # Carga los registros del CSV en una lista de diccionarios 
     with open("paises.csv","r",newline="",encoding="UTF-8") as lista: 
-        paises_diccionario=csv.DictReader(lista) 
+        paises_diccionario=csv.DictReader(lista) #Convierte las filas del csv en diccionario, usa la primera linea como claves
         
-        for list_pais in paises_diccionario:
+        for list_pais in paises_diccionario: #Lista de diccionarios
             lista_paises.append(list_pais) 
         
         # Verifica si el país existe en el archivo 
@@ -105,24 +101,26 @@ def actualizar_datos(): #Opcion 2
     # Si el país existe permite modificar sus datos 
     if condi_2 == True: 
         with open("paises.csv","w",newline="",encoding="UTF-8") as paises: 
-            diccionario_pais=csv.DictWriter(paises, fieldnames=encabezado) 
+            diccionario_pais=csv.DictWriter(paises, fieldnames=encabezado) #Creacion del escritor y establecemos el orden de las columnas
             
-            for clave in lista_paises: 
+            for clave in lista_paises: #Recorremos la lista de diccionarios
                 if clave['nombre'] == pais: 
                     
                     # Permite actualizar la poblacion 
                     while True: 
-                        poblacion=input(f"La cantidad de poblacion de {pais} es {clave['poblacion']}, desea actualizar?: ('S' Agregar | 'N' No agregar)\t>>>:  ").upper() 
+                        poblacion=input(f"La cantidad de poblacion de {pais} es {clave['poblacion']}, desea actualizar?: ('S' Actualizar | 'N' No hacer nada)\n>>>:  ").upper() 
                         
                         match poblacion: 
                             
                             case "S": 
-                                nueva_poblacion=input("Ingrese el nuevo valor de la pobalcion: ") 
                                 try:
-                                    nueva_poblacion = int(nueva_poblacion) 
-                                    clave['poblacion'] = nueva_poblacion 
-                                    print(f"Poblacion de {pais} actualizada") 
-                                    break 
+                                    nueva_poblacion = int(input("Ingrese la nueva poblacion: "))
+                                    if nueva_poblacion > 0:
+                                        clave['poblacion'] = nueva_poblacion 
+                                        print(f"Poblacion de {pais} actualizada") 
+                                        break
+                                    else:
+                                        print("\tERROR. Ingrese un numero mayor que 0")
                                 
                                 except ValueError: 
                                     print("\tERROR. Ingrese un numero entero")
@@ -138,17 +136,19 @@ def actualizar_datos(): #Opcion 2
                     
                     # Permite actualizar la superficie 
                     while True: 
-                        superficie=input(f"La cantidad de superficie de {pais} es {clave['superficie']}, desea actualizar?: ('S' Agregar | 'N' No agregar)\t>>>:  ").upper() 
+                        superficie=input(f"La cantidad de superficie de {pais} es {clave['superficie']}, desea actualizar?: ('S' Actualizar | 'N' No hacer nada)\n>>>:  ").upper() 
                         
                         match superficie: 
                             
                             case "S": 
-                                nueva_superficie=input("Ingrese el nuevo valor de la superficie: ")
                                 try:
-                                    nueva_superficie = float(nueva_superficie)
-                                    clave['superficie'] = nueva_superficie 
-                                    print(f"Superficie de {pais} actualizada") 
-                                    break 
+                                    nueva_superficie = float(input("Ingrese la nueva superficie: "))
+                                    if nueva_superficie > 0:
+                                        clave['superficie'] = nueva_superficie 
+                                        print(f"Superficie de {pais} actualizada") 
+                                        break
+                                    else:
+                                        print("\tERROR. Ingrese un numero mayor que 0")
                                 
                                 except ValueError: 
                                     print("\tERROR. Ingrese un numero flotante")
@@ -163,15 +163,15 @@ def actualizar_datos(): #Opcion 2
                                 print("\tERROR. Ingrese S o N")
             
             # Guarda los cambios realizados en el archivo
-            diccionario_pais.writeheader() 
-            diccionario_pais.writerows(lista_paises) 
+            diccionario_pais.writeheader() #Escribe los encabezados
+            diccionario_pais.writerows(lista_paises) #Recorre los diccionarios que estan en la lista y los escribe 
+            print("Datos actualizados correctamente!")
     
     else:
         print(f"\tERROR. {pais} no se encuentra") #Si no se encuentra el pais que se escribio
 
 #Funcion para buscar un pais o su coincidencia
 def busqueda_pais(): #Opcion 3
-    lista=[] 
     condi_1=False 
     pais=input("Que pais desea buscar?: ").capitalize()
     
@@ -182,13 +182,10 @@ def busqueda_pais(): #Opcion 3
             # Permite ver el archivo csv en diccionarios mientra se recorre uno por un con un for 
             lista_pais=csv.DictReader(paises) 
             
-            for nombres in lista_pais:
-                lista.append(nombres)
-            
             # Busca coincidencia exacta o parcial del nombre ingresado 
-            for busqueda in lista: 
+            for busqueda in lista_pais: 
                 if pais == busqueda['nombre']: 
-                    print(f"El pais {pais} se encuentra en la lista")
+                    print(f"El pais {pais} se encuentra en la lista, el cual tiene una poblacion de {busqueda['poblacion']} y cuenta con una superficie de {busqueda['superficie']} km cuadrados")
                     condi_1=True 
                     break 
                 
