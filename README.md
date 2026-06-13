@@ -44,8 +44,11 @@
 
 ### Actividad realizada por cada integrante
 ##### Pablo, realizo las primeras tres funciones (agregar_pais(), actualizar_pais(), busqueda_pais())
-##### Natalia, realizo las funciones filtrar_pais(), ordenar_pais() y mostrar estadisticas
-##### Durante la creacion del programa nos realizamos consultas uno al otro, consultado partes del codigo para resolver dudas
+##### Natalia, realizo las funciones filtrar_pais(), ordenar_pais() y mostrar estadisticas()
+##### Durante la creacion del programa nos realizamos consultas uno al otro, consultado partes del codigo para resolver dudas.
 
 ### Link del video explicativo
 ##### https://www.youtube.com/watch?v=uAHdmqg3k64
+
+#### Respecto a modulos
+##### En la rama 'proyecto' se encuentra la actividad realizada con modulos.
