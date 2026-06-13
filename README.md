@@ -32,6 +32,7 @@
 ##### B- La poblacion del pais debe ser un numero positivo entero (INT).
 ##### C- La superficie del pais debe ser un numero flotante (FLOAT), ya que la misma se representa en km cuadrados.
 ##### D- Al igual que el nombre del pais, el continente debe ser una cadena de texto.
+### En la rama del repositorio hay un archivo.py con el nombre "validar.py" lo que permite realizar los puntos A,B,C y D sin problemas
 
 ### Ejemplos
 ##### Al agregar o buscar un pais, puede ingresar el nombre ARGENTINA, Argentina o argentina, el programa no tendra error al buscar 
