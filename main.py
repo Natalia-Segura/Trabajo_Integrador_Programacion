@@ -72,134 +72,135 @@ def agregar_pais(): #Opcion 1
 
 #Funcion para actualizar poblacion y superficie
 def actualizar_datos(): #Opcion 2
-    condi_2=False
-    lista_paises=[] 
-    encabezado=["nombre","poblacion","superficie","continente"] 
-    
-    # Solicita y valida el nombre del pais a modificar
-    while True: 
-            pais=input("A que pais desea actualizar sus datos? ").capitalize()
-            
-            if pais.isalpha() == True:
-                break 
-            else:
-                print("\tERROR. Ingrese una cadena de texto")
-    
-    # Carga los registros del CSV en una lista de diccionarios 
-    with open("paises.csv","r",newline="",encoding="UTF-8") as lista: 
-        paises_diccionario=csv.DictReader(lista) #Convierte las filas del csv en diccionario, usa la primera linea como claves
+        condi_2=False
+        lista_paises=[] 
+        encabezado=["nombre","poblacion","superficie","continente"] 
         
-        for list_pais in paises_diccionario: #Lista de diccionarios
-            lista_paises.append(list_pais) 
+        # Solicita y valida el nombre del pais a modificar
+        while True: 
+                pais=input("A que pais desea actualizar sus datos? ").capitalize()
+                
+                if pais.isalpha() == True:
+                    break 
+                else:
+                    print("\tERROR. Ingrese una cadena de texto")
         
-        # Verifica si el país existe en el archivo 
-        for buscar in lista_paises:
-            if buscar['nombre'] == pais:
-                condi_2=True
-                break 
-    
-    # Si el país existe permite modificar sus datos 
-    if condi_2 == True: 
-        with open("paises.csv","w",newline="",encoding="UTF-8") as paises: 
-            diccionario_pais=csv.DictWriter(paises, fieldnames=encabezado) #Creacion del escritor y establecemos el orden de las columnas
+        # Carga los registros del CSV en una lista de diccionarios 
+        with open("paises.csv","r",newline="",encoding="UTF-8") as lista: 
+            paises_diccionario=csv.DictReader(lista) #Convierte las filas del csv en diccionario, usa la primera linea como claves
             
-            for clave in lista_paises: #Recorremos la lista de diccionarios
-                if clave['nombre'] == pais: 
-                    
-                    # Permite actualizar la poblacion 
-                    while True: 
-                        poblacion=input(f"La cantidad de poblacion de {pais} es {clave['poblacion']}, desea actualizar?: ('S' Actualizar | 'N' No hacer nada)\n>>>:  ").upper() 
-                        
-                        match poblacion: 
-                            
-                            case "S": 
-                                try:
-                                    nueva_poblacion = int(input("Ingrese la nueva poblacion: "))
-                                    if nueva_poblacion > 0:
-                                        clave['poblacion'] = nueva_poblacion 
-                                        print(f"Poblacion de {pais} actualizada") 
-                                        break
-                                    else:
-                                        print("\tERROR. Ingrese un numero mayor que 0")
-                                
-                                except ValueError: 
-                                    print("\tERROR. Ingrese un numero entero")
-                                
-                                except Exception as error: 
-                                    print("\tERROR. Se detecto un error ",type(error).__name__) 
-                            
-                            case "N":
-                                break 
-                            
-                            case _: 
-                                print("\tERROR. Ingrese S o N")
-                    
-                    # Permite actualizar la superficie 
-                    while True: 
-                        superficie=input(f"La cantidad de superficie de {pais} es {clave['superficie']}, desea actualizar?: ('S' Actualizar | 'N' No hacer nada)\n>>>:  ").upper() 
-                        
-                        match superficie: 
-                            
-                            case "S": 
-                                try:
-                                    nueva_superficie = float(input("Ingrese la nueva superficie: "))
-                                    if nueva_superficie > 0:
-                                        clave['superficie'] = nueva_superficie 
-                                        print(f"Superficie de {pais} actualizada") 
-                                        break
-                                    else:
-                                        print("\tERROR. Ingrese un numero mayor que 0")
-                                
-                                except ValueError: 
-                                    print("\tERROR. Ingrese un numero flotante")
-                                
-                                except Exception as error: 
-                                    print("\tERROR. Se detecto un error ",type(error).__name__) 
-                            
-                            case "N": 
-                                break 
-                            
-                            case _: 
-                                print("\tERROR. Ingrese S o N")
+            for list_pais in paises_diccionario: #Lista de diccionarios
+                lista_paises.append(list_pais) 
             
-            # Guarda los cambios realizados en el archivo
-            diccionario_pais.writeheader() #Escribe los encabezados
-            diccionario_pais.writerows(lista_paises) #Recorre los diccionarios que estan en la lista y los escribe 
-            print("Datos actualizados correctamente!")
-    
-    else:
-        print(f"\tERROR. {pais} no se encuentra") #Si no se encuentra el pais que se escribio
+            # Verifica si el país existe en el archivo 
+            for buscar in lista_paises:
+                if buscar['nombre'] == pais:
+                    condi_2=True
+                    break 
+        
+        # Si el país existe permite modificar sus datos 
+        if condi_2 == True: 
+            with open("paises.csv","w",newline="",encoding="UTF-8") as paises: 
+                diccionario_pais=csv.DictWriter(paises, fieldnames=encabezado) #Creacion del escritor y establecemos el orden de las columnas
+                
+                for clave in lista_paises: #Recorremos la lista de diccionarios
+                    if clave['nombre'] == pais: 
+                        
+                        # Permite actualizar la poblacion 
+                        while True: 
+                            poblacion=input(f"La cantidad de poblacion de {pais} es {clave['poblacion']}, desea actualizar?: ('S' Actualizar | 'N' No hacer nada)\n>>>:  ").upper() 
+                            
+                            match poblacion: 
+                                
+                                case "S": 
+                                    try:
+                                        nueva_poblacion = int(input("Ingrese la nueva poblacion: "))
+                                        if nueva_poblacion > 0:
+                                            clave['poblacion'] = nueva_poblacion 
+                                            print(f"Poblacion de {pais} actualizada") 
+                                            break
+                                        else:
+                                            print("\tERROR. Ingrese un numero mayor que 0")
+                                    
+                                    except ValueError: 
+                                        print("\tERROR. Ingrese un numero entero")
+                                    
+                                    except Exception as error: 
+                                        print("\tERROR. Se detecto un error ",type(error).__name__) 
+                                
+                                case "N":
+                                    break 
+                                
+                                case _: 
+                                    print("\tERROR. Ingrese S o N")
+                        
+                        # Permite actualizar la superficie 
+                        while True: 
+                            superficie=input(f"La cantidad de superficie de {pais} es {clave['superficie']}, desea actualizar?: ('S' Actualizar | 'N' No hacer nada)\n>>>:  ").upper() 
+                            
+                            match superficie: 
+                                
+                                case "S": 
+                                    try:
+                                        nueva_superficie = float(input("Ingrese la nueva superficie: "))
+                                        if nueva_superficie > 0:
+                                            clave['superficie'] = nueva_superficie 
+                                            print(f"Superficie de {pais} actualizada") 
+                                            break
+                                        else:
+                                            print("\tERROR. Ingrese un numero mayor que 0")
+                                    
+                                    except ValueError: 
+                                        print("\tERROR. Ingrese un numero flotante")
+                                    
+                                    except Exception as error: 
+                                        print("\tERROR. Se detecto un error ",type(error).__name__) 
+                                
+                                case "N": 
+                                    break 
+                                
+                                case _: 
+                                    print("\tERROR. Ingrese S o N")
+                
+                # Guarda los cambios realizados en el archivo
+                diccionario_pais.writeheader() #Escribe los encabezados
+                diccionario_pais.writerows(lista_paises) #Recorre los diccionarios que estan en la lista y los escribe 
+                print("Datos actualizados correctamente!")
+        else:
+            print(f"\tERROR. {pais} no se encuentra") #Si no se encuentra el pais que se escribio
+
 
 #Funcion para buscar un pais o su coincidencia
 def busqueda_pais(): #Opcion 3
-    condi_1=False 
-    pais=input("Que pais desea buscar?: ").capitalize()
-    
-    if pais.isalpha() == True: 
+        condi_1=False 
+        pais=input("Que pais desea buscar?: ").capitalize()
         
-        # Carga los registros del CSV para realizar la búsqueda
-        with open("paises.csv","r",newline="",encoding="UTF-8") as paises:
-            # Permite ver el archivo csv en diccionarios mientra se recorre uno por un con un for 
-            lista_pais=csv.DictReader(paises) 
+        if pais.isalpha() == True: 
             
-            # Busca coincidencia exacta o parcial del nombre ingresado 
-            for busqueda in lista_pais: 
-                if pais == busqueda['nombre']: 
-                    print(f"El pais {pais} se encuentra en la lista, el cual tiene una poblacion de {busqueda['poblacion']} y cuenta con una superficie de {busqueda['superficie']} km cuadrados")
-                    condi_1=True 
-                    break 
+            # Carga los registros del CSV para realizar la búsqueda
+            with open("paises.csv","r",newline="",encoding="UTF-8") as paises:
+                # Permite ver el archivo csv en diccionarios mientra se recorre uno por un con un for 
+                lista_pais=csv.DictReader(paises) 
                 
-                elif pais in busqueda['nombre']: 
-                    print(f"El pais {busqueda['nombre']} se cuentra en la lista, el cual tiene una poblacion de {busqueda['poblacion']} y cuenta con una superficie de {busqueda['superficie']} km cuadrados")
-                    condi_1=True 
-                    break 
+                # Busca coincidencia exacta o parcial del nombre ingresado 
+                for busqueda in lista_pais: 
+                    if pais == busqueda['nombre']: 
+                        print(f"El pais {pais} se encuentra en la lista, el cual tiene una poblacion de {busqueda['poblacion']} y cuenta con una superficie de {busqueda['superficie']} km cuadrados")
+                        condi_1=True 
+                        break 
+                    
+                    elif pais in busqueda['nombre']: 
+                        print(f"El pais {busqueda['nombre']} se cuentra en la lista, el cual tiene una poblacion de {busqueda['poblacion']} y cuenta con una superficie de {busqueda['superficie']} km cuadrados")
+                        condi_1=True 
+                        break 
+            
+            #Si no se encontro por nombre completo ni por coincidencia 
+            if condi_1 == False: 
+                print("El pais no se encuentra en la lista")
         
-        #Si no se encontro por nombre completo ni por coincidencia 
-        if condi_1 == False: 
-            print("El pais no se encuentra en la lista")
-    
-    else: 
-        print("\tERROR. Ingrese una cadena de texto")
+        else: 
+            print("\tERROR. Ingrese una cadena de texto")
+
 
 #Filtrar países por: Continente, Rango de población,Rango de superficie
 def filtrar_paises(): #Opcion 4
